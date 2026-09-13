@@ -792,9 +792,7 @@
     var q = /[?&]lang=(en|ko)\b/.exec(location.search);
     if (q) lang = q[1];
     if (!lang) { try { lang = localStorage.getItem('lang'); } catch (e) {} }
-    if (lang !== 'en' && lang !== 'ko') {
-      lang = (navigator.language || '').toLowerCase().indexOf('ko') === 0 ? 'ko' : 'en';
-    }
+    if (lang !== 'en' && lang !== 'ko') lang = 'en';
     setLang(lang);
     document.querySelector('.lang-toggle').addEventListener('click', function (e) {
       var b = e.target.closest('button');
