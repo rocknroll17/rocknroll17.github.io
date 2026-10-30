@@ -138,6 +138,24 @@
     gap: 10px;
   }
 
+  .pdf-btn {
+    height: 34px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 12px;
+    border: 1px solid var(--rule);
+    border-radius: 17px;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .pdf-btn svg { width: 15px; height: 15px; }
+  .pdf-btn:hover { color: var(--accent); border-color: var(--accent); }
+
   .theme-toggle {
     width: 34px;
     height: 34px;
@@ -350,8 +368,8 @@
   /* ---------- Print ---------- */
 
   @media print {
-    .theme-toggle, .lang-toggle { display: none; }
-    a { color: var(--text); }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .theme-toggle, .lang-toggle, .pdf-btn, .embed { display: none !important; }
   }
 
   /* ---------- Language toggle ---------- */
@@ -400,6 +418,10 @@
 <body>
 
 <div class="top-controls">
+  <button class="pdf-btn" type="button" onclick="window.print()" aria-label="Save CV as PDF" title="Save as PDF">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></svg>
+    <span>PDF</span>
+  </button>
   <div class="lang-toggle" role="group" aria-label="Language">
     <button type="button" data-lang="en" aria-pressed="true">EN</button>
     <button type="button" data-lang="ko" aria-pressed="false">KO</button>
@@ -573,7 +595,8 @@
       </div>
       <div class="pub-venue">NeurIPS 2026 &middot; <span class="badge">Oral</span></div>
       <div class="pub-links">
-        <a href="https://neurips.cc/virtual/2026/loc/sydney/poster/151996"><span class="en">NeurIPS page</span><span class="ko">NeurIPS 페이지</span></a>
+        <a href="https://neurips.cc/virtual/2026/loc/sydney/poster/151996"><span class="en">NeurIPS page</span><span class="ko">NeurIPS 페이지</span></a> /
+        <a href="https://news.cau.ac.kr/cms/FR_CON/BoardView.do?MENU_ID=10&amp;CONTENTS_NO=&amp;SITE_NO=5&amp;BOARD_SEQ=1&amp;BOARD_CATEGORY_NO=&amp;P_TAB_NO=&amp;TAB_NO=&amp;BBS_SEQ=9806"><span class="en">press release</span><span class="ko">보도자료</span></a>
         <!-- TODO: arXiv / project page 생기면 링크 추가 -->
       </div>
     </div>
