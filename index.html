@@ -375,7 +375,11 @@
   @media print {
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .theme-toggle, .lang-toggle, .pdf-btn, .embed { display: none !important; }
+    /* @page margin 0 leaves no room for the browser's date/title header,
+       so re-add the margin per printed page via cloned padding. */
+    .page { padding: 14mm 0; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
   }
+  @page { margin: 0; }
 
   /* ---------- Language toggle ---------- */
   .lang-toggle {
