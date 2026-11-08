@@ -349,6 +349,42 @@
     color: var(--muted);
   }
 
+  /* ---------- Live viewers ---------- */
+
+  .viewers {
+    height: 34px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 12px;
+    border: 1px solid var(--rule);
+    border-radius: 17px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: default;
+  }
+  .viewers-eye {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    transition: color 0.3s;
+  }
+  .viewers:has([data-state="live"]) .viewers-eye { color: var(--accent); }
+  .viewers-count { color: var(--text); font-variant-numeric: tabular-nums; }
+  .viewers-skeleton {
+    display: inline-block;
+    width: 1.6em;
+    height: 0.9em;
+    border-radius: 4px;
+    vertical-align: -0.1em;
+    background: var(--rule);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .viewers-eye { transition: none; }
+  }
+
   /* ---------- Mobile ---------- */
 
   @media (max-width: 640px) {
@@ -358,6 +394,7 @@
       right: 16px;
       gap: 8px;
     }
+    .viewers { padding: 0 10px; }
     .intro {
       flex-direction: column-reverse;
       align-items: flex-start;
@@ -374,7 +411,7 @@
 
   @media print {
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .theme-toggle, .lang-toggle, .pdf-btn, .embed { display: none !important; }
+    .theme-toggle, .lang-toggle, .pdf-btn, .embed, .viewers { display: none !important; }
     /* @page margin 0 leaves no room for the browser's date/title header,
        so re-add the margin per printed page via cloned padding. */
     .page { padding: 14mm 0; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
@@ -427,6 +464,14 @@
 <body>
 
 <div class="top-controls">
+  <div class="viewers" title="People viewing this page right now" aria-label="People viewing this page right now">
+    <svg class="viewers-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/>
+      <circle cx="12" cy="12" r="2.8"/>
+    </svg>
+    <span class="viewers-count" data-viewers><span class="viewers-skeleton" aria-hidden="true"></span></span>
+  </div>
   <a class="pdf-btn" href="https://portfolio.rocknroll17.com" title="Portfolio">
     <span class="en">Portfolio</span><span class="ko">포트폴리오</span>
   </a>
@@ -906,6 +951,7 @@
     });
   })();
 </script>
+<script src="https://now.rocknroll17.com/v1/counter.js" data-key="cv.rocknroll17.com" defer></script>
 
 </body>
 </html>
